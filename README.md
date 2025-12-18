@@ -26,9 +26,9 @@ This work proposes a **fine-grained confidence estimation framework** that compu
 ## Repository Structure
 
 ```
-public_release/
-├── README.md                 # This file
-├── requirements.txt          # Python dependencies
+finegrained_conf/
+├── README.md                # This file
+├── requirements.txt         # Python dependencies
 ├── .gitignore               # Git ignore patterns
 │
 ├── src/                     # Core package
@@ -65,7 +65,7 @@ public_release/
 ```bash
 # Clone the repository
 git clone https://github.com/aiishii/finegrained_conf.git
-cd finegrained_conf/public_release
+cd finegrained_conf
 
 # Create virtual environment (recommended)
 python -m venv venv
