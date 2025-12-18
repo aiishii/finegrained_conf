@@ -222,16 +222,6 @@ Experiments generate JSONL files with structure:
 - **Discrimination**: AUC (Selective accuracy-coverage), ROC-AUC, PR-AUC
 - **Temperature scaling**: ECE-t, BS-t (with optimal temperature)
 
-## Key Files Included in This Release
-
-### Essential for Reproduction:
-- `scripts/run_evidence_experiment.py` - Main experiment runner
-- `scripts/evaluate_experiments.py` - Metrics calculation
-- `src/finegrained_conf/` - Complete package (23 files)
-- `configs/paper_experiments/` - Paper-specific configurations
-
-**Rationale**: This release focuses on **paper reproduction** only. Migration and analysis tools are for internal experimental workflows and are not needed to replicate the paper results.
-
 ## Citation
 
 If you use this code, please cite:
@@ -258,12 +248,12 @@ Related dataset:
 
 ## License
 
-[Specify your license here - e.g., MIT, Apache 2.0, etc.]
+This code is released under the MIT License.
+See the LICENSE file for details.
 
-## Contact
-
-- Ai Ishii: ai.ishii@jaist.ac.jp
-- Project repository: https://github.com/aiishii/finegrained_conf
+Note that this repository does not redistribute any datasets.
+All datasets are subject to their respective original licenses
+(e.g., JEMHopQA, 2WikiMultiHopQA, SciQ, TriviaQA, TruthfulQA).
 
 ## Acknowledgments
 
