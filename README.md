@@ -253,7 +253,7 @@ See the LICENSE file for details.
 
 Note that this repository does not redistribute any datasets.
 All datasets are subject to their respective original licenses
-(e.g., JEMHopQA, 2WikiMultiHopQA, SciQ, TriviaQA, TruthfulQA).
+(e.g., JEMHopQA, 2WikiMultiHopQA).
 
 ## Acknowledgments
 
