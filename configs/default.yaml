@@ -1,0 +1,69 @@
+experiment:
+  name: "default_experiment"
+  description: "Default experiment configuration"
+
+dataset:
+  name: "jemhop_qa"
+  split: "dev"
+  num_samples: 100
+  data_path: null  # Auto-detect based on dataset name
+
+model:
+  name: "gpt-4.1-mini-2025-04-14"
+  provider: "openai"
+  api_key_env: "OPENAI_API_KEY"  # Environment variable name
+
+methods:
+  answer_level:
+    - name: "label_prob"
+      params:
+        temperature: 0.7
+        top_p: 0.95
+        n: 10
+        max_tokens: 100
+
+evaluation:
+  model: "gpt-4.1-2025-04-14"
+  temperature: 0.0
+  max_tokens: 500
+  method: "function_calling"
+  fuzzy_match_threshold: 0.8
+  max_retries: 3
+
+metrics:
+  calibration:
+    - "ece"
+    - "ece_t"
+    - "bs"
+    - "bs_t"
+  
+  discrimination:
+    - "roc_auc"
+    - "pr_auc"
+  
+  selection:
+    - "selective_auc"
+
+temperature_scaling:
+  method: "cross_validation"
+  n_folds: 5
+  shuffle: true
+  random_seed: 42
+
+output:
+  base_dir: "experiments"
+  save_responses: true
+  save_intermediate: true
+  save_summary: true
+
+language: "ja"
+
+reproducibility:
+  random_seed: 42
+  max_retries: 3
+  retry_delay: 1.0
+
+logging:
+  level: "INFO"
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  file: null  # null = console only

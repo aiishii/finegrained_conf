@@ -1,0 +1,108 @@
+# JEMHopQA-1000 with GPT-4.1-mini
+
+experiment:
+  name: "jemhop_qa_gpt41mini_paper_reproduction"
+  description: "IJCNLP-AACL 2025 paper reproduction: JEMHopQA-1000 with GPT-4.1-mini"
+
+dataset:
+  name: "jemhop_qa"
+  split: "train"
+  num_samples: 1000
+  data_path: "data/jemhop_qa/train_ver1.1.json"
+
+model:
+  name: "gpt-4.1-mini-2025-04-14"
+  provider: "openai"
+
+methods:
+  # Answer-level methods
+  answer_level:
+    - name: "label_prob"
+      params:
+        temperature: 0.7
+        top_p: 0.95
+        n: 10
+        max_tokens: 100
+    
+    - name: "logprob"
+      params:
+        temperature: 0.0
+        max_tokens: 100
+        logprobs: true
+        top_logprobs: 20
+    
+    - name: "verb_2s_top_1"
+      params:
+        temperature: 0.0
+        max_tokens: 150
+    
+    - name: "ling_1s_human"
+      params:
+        temperature: 0.0
+        max_tokens: 150
+  
+  # Evidence-level methods
+  evidence_level:
+    - name: "triple_label_prob"
+      params:
+        temperature: 0.7
+        top_p: 0.95
+        n: 10
+        max_tokens: 300
+    
+    - name: "triple_logprob"
+      params:
+        temperature: 0.0
+        max_tokens: 300
+        logprobs: true
+        top_logprobs: 20
+    
+    - name: "triple_verb_2s_top_1"
+      params:
+        temperature: 0.0
+        max_tokens: 300
+    
+    - name: "triple_ling_1s_human"
+      params:
+        temperature: 0.0
+        max_tokens: 300
+
+evaluation:
+  model: "gpt-4.1-2025-04-14"
+  temperature: 0.0
+  max_tokens: 500
+  method: "function_calling"
+  fuzzy_match_threshold: 0.8
+
+metrics:
+  calibration:
+    - "ece"       # Expected Calibration Error
+    - "ece_t"     # Temperature-scaled ECE
+    - "bs"        # Brier Score
+    - "bs_t"      # Temperature-scaled Brier Score
+  
+  discrimination:
+    - "roc_auc"   # ROC-AUC for spurious correctness detection
+    - "pr_auc"    # PR-AUC for spurious correctness detection
+  
+  selection:
+    - "selective_auc"  # Selective prediction AUC
+
+temperature_scaling:
+  method: "cross_validation"
+  n_folds: 5
+  shuffle: true
+  random_seed: 42
+
+output:
+  base_dir: "experiments"
+  save_responses: true
+  save_intermediate: true
+  save_summary: true
+
+language: "ja"  # Japanese
+
+reproducibility:
+  random_seed: 42
+  max_retries: 3
+  retry_delay: 1.0

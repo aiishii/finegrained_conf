@@ -1,0 +1,41 @@
+# LLM Client Configuration Example
+# Copy this file to llm_config.yaml and fill in your actual credentials
+# llm_config.yaml will be git-ignored for security
+
+# Default configuration for all models (unless overridden)
+default:
+  api_key: ${AZURE_OPENAI_API_KEY}  # Environment variable
+  azure_endpoint: ${AZURE_ENDPOINT}  # Environment variable
+  api_version: "2024-12-01-preview"
+  timeout: 120
+
+# Proxy settings (optional)
+# Uncomment and configure if you need proxy support
+# proxy:
+#   http_proxy: "http://proxy.example.com:8080"
+#   https_proxy: "http://proxy.example.com:8080"
+#   no_proxy: "api.openai.com"
+
+# Model-specific configurations
+# Add entries here for models that require different endpoints or API keys
+models:
+  # Example: GPT-4.1 Nano with different endpoint
+  "gpt-4.1-nano-2025-04-14":
+    api_key: ${AZURE_OPENAI_NANO_KEY}
+    azure_endpoint: ${AZURE_NANO_ENDPOINT}
+    api_version: "2025-01-01-preview"
+    timeout: 120
+
+  # Example: Llama models with different endpoint
+  # This pattern matches any model name containing "llama" (case-insensitive)
+  "llama":
+    api_key: ${AZURE_LLAMA_KEY}
+    azure_endpoint: ${AZURE_LLAMA_ENDPOINT}
+    api_version: "2024-05-01-preview"
+    timeout: 180
+
+# Notes:
+# 1. Use environment variables (${VAR_NAME}) for sensitive information
+# 2. Model-specific configurations override the default settings
+# 3. The "llama" entry is a special pattern that matches any model containing "llama"
+# 4. You can add as many model-specific configurations as needed
