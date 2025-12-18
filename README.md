@@ -257,4 +257,6 @@ All datasets are subject to their respective original licenses
 
 ## Acknowledgments
 
-This work was supported by BIPROGY Inc., which provided the computing environment and research funding.
+This work was supported in part by BIPROGY Inc.,
+which provided computing resources and general research support.
+
