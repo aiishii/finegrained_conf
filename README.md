@@ -228,9 +228,9 @@ If you use this code, please cite:
 
 ```bibtex
 @inproceedings{ishii2025finegrained,
-  title={Fine-grained Confidence Estimation for Spurious Correctness Detection in Large Language Models},
+  title={Fine-grained Confidence Estimation for Spurious Correctness Detection in LLMs},
   author={Ishii, Ai and Inoue, Naoya and Suzuki, Hisami and Sekine, Satoshi},
-  booktitle={Proceedings of the 6th Conference of the Asia-Pacific Chapter of the Association for Computational Linguistics and the 13th International Joint Conference on Natural Language Processing (IJCNLP-AACL 2025)},
+  booktitle={Proceedings of the 14th International Joint Conference on Natural Language Processing and 4th Asia-Pacific Chapter of the Association for Computational Linguistics (IJCNLP-AACL 2025)},
   year={2025}
 }
 ```
