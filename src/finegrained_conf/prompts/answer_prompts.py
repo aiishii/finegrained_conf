@@ -102,154 +102,98 @@ Thought: <a brief, one-sentence summary of your reasoning>
 Answer: <the most likely answer, as short as possible; not a full sentence—answer only!>
 Probability: <the probability that your answer is correct (between 0.0 and 1.0), with no extra comments—number only!>
 """,
+
+    "is_true_prob": """Question: ${THE_QUESTION}
+Proposed Answer: ${ANSWER}
+Is the proposed answer:
+\t(A) True or
+\t(B) False?
+The proposed answer is:""",
+
+    "verb_1s_top_2": """Provide your 2 best guesses and the probability that each is correct (0.0 to
+1.0) for the following question. Give ONLY the guesses and probabilities, no other
+words or explanation. For example:
+
+G1: <first most likely guess, as short as possible; not a complete sentence, just the guess!>
+P1: <the probability between 0.0 and 1.0 that G1 is correct, without any extra commentary whatsoever; just the probability!>
+G2: <second most likely guess, as short as possible; not a complete sentence, just the guess!>
+P2: <the probability between 0.0 and 1.0 that G2 is correct, without any extra commentary whatsoever; just the probability!>
+
+The question is: ${THE_QUESTION}""",
+
+    "verb_1s_top_4": """Provide your 4 best guesses and the probability that each is correct (0.0 to
+1.0) for the following question. Give ONLY the guesses and probabilities, no other
+words or explanation. For example:
+
+G1: <first most likely guess, as short as possible; not a complete sentence, just the guess!>
+P1: <the probability between 0.0 and 1.0 that G1 is correct, without any extra commentary whatsoever; just the probability!>
+G2: <second most likely guess, as short as possible; not a complete sentence, just the guess!>
+P2: <the probability between 0.0 and 1.0 that G2 is correct, without any extra commentary whatsoever; just the probability!>
+G3: <third most likely guess, as short as possible; not a complete sentence, just the guess!>
+P3: <the probability between 0.0 and 1.0 that G3 is correct, without any extra commentary whatsoever; just the probability!>
+G4: <fourth most likely guess, as short as possible; not a complete sentence, just the guess!>
+P4: <the probability between 0.0 and 1.0 that G4 is correct, without any extra commentary whatsoever; just the probability!>
+
+The question is: ${THE_QUESTION}""",
+
+
+    "verb_2s_cot": """Provide your best guess for the following question. Before giving your answer,
+provide a step-by-step explanation of your thought process. Then on a new line
+give the guess with no other words or explanation.
+
+For example:
+
+Explanation: <one sentence step-by-step explanation of your thought process>
+Guess: <most likely guess, as short as possible; not a complete sentence, just the guess!>
+
+The question is: ${THE_QUESTION}""",
+
+    "verb_2s_cot_prob": """Provide the probability that your guess is correct. Give ONLY the probability, no
+other words or explanation.
+
+For example:
+
+Probability: <the probability between 0.0 and 1.0 that your guess is correct, without any extra commentary whatsoever; just the probability!>
+""",
+
+    "verb_2s_top_1": """Provide your best guess for the following question. Give ONLY the guess, no
+other words or explanation.
+
+For example:
+
+Guess: <most likely guess, as short as possible; not a complete sentence, just the guess!>
+
+The question is: ${THE_QUESTION}""",
+
+    "verb_2s_top_1_prob": """Provide the probability that your guess is correct. Give ONLY the probability, no
+other words or explanation.
+
+For example:
+
+Probability: <the probability between 0.0 and 1.0 that your guess is correct, without any extra commentary whatsoever; just the probability!>
+""",
+
+    "verb_2s_top_k": """Provide your ${k} best guesses for the following question. Give ONLY the guesses,
+no other words or explanation. For example:
+
+G1: <first most likely guess, as short as possible; not a complete sentence, just the guess!>
+G2: <second most likely guess, as short as possible; not a complete sentence, just the guess!>
+...
+G${k}: <${k}-th most likely guess, as short as possible; not a complete sentence, just the guess!>
+
+The question is: ${THE_QUESTION}""",
+
+    "verb_2s_top_k_prob": """Provide the probability that each of your guesses is correct. Give ONLY
+the probabilities, no other words or explanation.
+
+For example:
+
+P1: <the probability between 0.0 and 1.0 that G1 is correct, without any extra commentary whatsoever; just the probability!>
+...
+P${k}: <the probability between 0.0 and 1.0 that G${k} is correct, without any extra commentary whatsoever; just the probability!>
+""",
+
 }
-
-# PROMPT_TEMPLATES = {
-#     "label_prob": """Provide your best guess for the following question. Give ONLY the guess, no
-# other words or explanation.
-
-# For example:
-
-# Guess: <most likely guess, as short as possible; not a complete sentence, just the guess!>
-
-# The question is: ${THE_QUESTION}""",
-
-#     "is_true_prob": """Question: ${THE_QUESTION}
-# Proposed Answer: ${ANSWER}
-# Is the proposed answer:
-# \t(A) True or
-# \t(B) False?
-# The proposed answer is:""",
-
-
-#     "verb_1s_top_1": """Provide your best guess and the probability that it is correct (0.0 to 1.0) for
-# the following question. Give ONLY the guess and probability, no other words or
-# explanation. For example:
-
-# Answer: <most likely guess, as short as possible; not a complete sentence, just the guess!>
-# Probability: <the probability between 0.0 and 1.0 that your guess is correct, without any extra commentary whatsoever; just the probability!>
-
-# The question is: ${THE_QUESTION}""",
-
-#     "verb_1s_top_2": """Provide your 2 best guesses and the probability that each is correct (0.0 to
-# 1.0) for the following question. Give ONLY the guesses and probabilities, no other
-# words or explanation. For example:
-
-# G1: <first most likely guess, as short as possible; not a complete sentence, just the guess!>
-# P1: <the probability between 0.0 and 1.0 that G1 is correct, without any extra commentary whatsoever; just the probability!>
-# G2: <second most likely guess, as short as possible; not a complete sentence, just the guess!>
-# P2: <the probability between 0.0 and 1.0 that G2 is correct, without any extra commentary whatsoever; just the probability!>
-
-# The question is: ${THE_QUESTION}""",
-
-#     "verb_1s_top_4": """Provide your 4 best guesses and the probability that each is correct (0.0 to
-# 1.0) for the following question. Give ONLY the guesses and probabilities, no other
-# words or explanation. For example:
-
-# G1: <first most likely guess, as short as possible; not a complete sentence, just the guess!>
-# P1: <the probability between 0.0 and 1.0 that G1 is correct, without any extra commentary whatsoever; just the probability!>
-# G2: <second most likely guess, as short as possible; not a complete sentence, just the guess!>
-# P2: <the probability between 0.0 and 1.0 that G2 is correct, without any extra commentary whatsoever; just the probability!>
-# G3: <third most likely guess, as short as possible; not a complete sentence, just the guess!>
-# P3: <the probability between 0.0 and 1.0 that G3 is correct, without any extra commentary whatsoever; just the probability!>
-# G4: <fourth most likely guess, as short as possible; not a complete sentence, just the guess!>
-# P4: <the probability between 0.0 and 1.0 that G4 is correct, without any extra commentary whatsoever; just the probability!>
-
-# The question is: ${THE_QUESTION}""",
-
-
-#     "verb_1s_cot": """Provide your best guess for the following question. Before giving your answer,
-# provide a step-by-step explanation of your thought process. Then give the guess with
-# the probability that it is correct (0.0 to 1.0). Give ONLY the explanation, guess,
-# and probability, no other words.
-
-# For example:
-
-# Explanation: <one sentence step-by-step explanation of your thought process>
-# Answer: <most likely guess, as short as possible; not a complete sentence, just the guess!>
-# Probability: <the probability between 0.0 and 1.0 that your guess is correct, without any extra commentary whatsoever; just the probability!>
-
-# The question is: ${THE_QUESTION}""",
-
-
-#     "verb_2s_cot": """Provide your best guess for the following question. Before giving your answer,
-# provide a step-by-step explanation of your thought process. Then on a new line
-# give the guess with no other words or explanation.
-
-# For example:
-
-# Explanation: <one sentence step-by-step explanation of your thought process>
-# Guess: <most likely guess, as short as possible; not a complete sentence, just the guess!>
-
-# The question is: ${THE_QUESTION}""",
-
-#     "verb_2s_cot_prob": """Provide the probability that your guess is correct. Give ONLY the probability, no
-# other words or explanation.
-
-# For example:
-
-# Probability: <the probability between 0.0 and 1.0 that your guess is correct, without any extra commentary whatsoever; just the probability!>
-# """,
-
-#     "verb_2s_top_1": """Provide your best guess for the following question. Give ONLY the guess, no
-# other words or explanation.
-
-# For example:
-
-# Guess: <most likely guess, as short as possible; not a complete sentence, just the guess!>
-
-# The question is: ${THE_QUESTION}""",
-
-#     "verb_2s_top_1_prob": """Provide the probability that your guess is correct. Give ONLY the probability, no
-# other words or explanation.
-
-# For example:
-
-# Probability: <the probability between 0.0 and 1.0 that your guess is correct, without any extra commentary whatsoever; just the probability!>
-# """,
-
-#     "verb_2s_top_k": """Provide your ${k} best guesses for the following question. Give ONLY the guesses,
-# no other words or explanation. For example:
-
-# G1: <first most likely guess, as short as possible; not a complete sentence, just the guess!>
-# G2: <second most likely guess, as short as possible; not a complete sentence, just the guess!>
-# ...
-# G${k}: <${k}-th most likely guess, as short as possible; not a complete sentence, just the guess!>
-
-# The question is: ${THE_QUESTION}""",
-
-#     "verb_2s_top_k_prob": """Provide the probability that each of your guesses is correct. Give ONLY
-# the probabilities, no other words or explanation.
-
-# For example:
-
-# P1: <the probability between 0.0 and 1.0 that G1 is correct, without any extra commentary whatsoever; just the probability!>
-# ...
-# P${k}: <the probability between 0.0 and 1.0 that G${k} is correct, without any extra commentary whatsoever; just the probability!>
-# """,
-
-
-#     "ling_1s_human": """Provide your best guess for the following question, and describe how likely it is
-# that your guess is correct as one of the following expressions: ${EXPRESSION_LIST}.
-
-# Question: {THE_QUESTION}
-
-# Provide your response in the following format:
-# Answer: <most likely guess, as short as possible; not a complete sentence, just the guess!> confidence_expression
-# """,
-# }
-
-
-
-# EVALUATION_PROMPT = """Are the following two answers to my
-# question Q semantically equivalent?
-
-# Q: ${THE_QUESTION}
-# A1: ${GOLD_ANSWER}
-# A2: ${PRED_ANSWER}
-
-# Please answer with a single word, either "Yes." or "No.", and
-# explain your reasoning."""
 
 EVALUATION_PROMPT_EN = """Are the following two answers semantically equivalent for the given question?
 Evaluation points:
@@ -418,10 +362,6 @@ PROMPT_TEMPLATES_JP = {
 
 }
 
-
-
-
-
 EVALUATION_PROMPT_JP = """次の質問に対する2つの回答は意味的に同等でしょうか？
 評価ポイント:
 ・ 表記が異なっても質問に適切なら粒度の違いを許容するが、問われているより上位概念での回答は不可
@@ -433,14 +373,6 @@ EVALUATION_PROMPT_JP = """次の質問に対する2つの回答は意味的に�
 回答2: ${PRED_ANSWER}
 
 「はい」または「いいえ」の単語だけで回答し、その後に理由を説明してください。"""
-
-# fix4eval
-
-
-
-
-
-# """
 
 
 def get_closest_linguistic_expression(probability, mapping_dict=PROB_TO_LINGUISTIC_MAPPING_JP):

@@ -16,27 +16,27 @@ from finegrained_conf.io.run_metadata import ExperimentRecorder, TestInstance
 
 class IncompleteResponseError(Exception):
     """
-    LLM応答が不完全または無効な場合に投げられる例外
+    Exception raised when an LLM response is incomplete or invalid.
 
-    この例外は以下のケースで使用されます:
-    - 応答のパースに失敗した場合
-    - 必要な情報が応答に含まれていない場合
-    - 回答や確信度が抽出できなかった場合
+    This exception is used in the following cases:
+    - Failed to parse the response
+    - Required information is missing from the response
+    - Could not extract the answer or confidence
 
-    APIWrapperがこの例外を捕捉し、自動的にリトライします。
+    The APIWrapper catches this exception and automatically retries.
     """
     pass
 
 
 class ContentFilterError(Exception):
     """
-    コンテンツフィルタリングによって応答が拒否された場合に投げられる例外
+    Exception raised when a response is rejected due to content filtering.
 
-    この例外は以下のケースで使用されます:
-    - APIがNoneコンテンツを返した場合
-    - コンテンツフィルタリングにより応答が拒否された場合
+    This exception is used in the following cases:
+    - The API returns None content
+    - The response is blocked due to content filtering
 
-    APIWrapperがこの例外を捕捉し、リトライせずにスキップします。
+    The APIWrapper catches this exception and skips the request without retrying.
     """
     pass
 
@@ -49,7 +49,7 @@ def with_api_logging(
     sample_index: int = 0,
 ):
     """
-    LLM API呼び出しをログ記録するデコレータ
+    Decorator for logging LLM API calls
     
     Usage:
         @with_api_logging(recorder, test_instance, method, "answer_generation", sample_idx)
@@ -117,9 +117,9 @@ def with_api_logging(
 
 class APIWrapper:
     """
-    LLM API呼び出しのラッパークラス
-    
-    すべてのLLM呼び出しを統一的にログ記録する。
+    Wrapper class for LLM API calls.
+
+    Logs all LLM calls in a unified manner.
     """
     
     def __init__(
@@ -143,18 +143,18 @@ class APIWrapper:
         **kwargs,
     ) -> Any:
         """
-        LLM関数を呼び出してログを記録する
-        
+        Call the LLM function and record logs.
+
         Args:
-            llm_func: 実際のLLM呼び出し関数
-            test_instance: テストインスタンス
-            method: 実験メソッド名
-            call_role: 呼び出しの役割
-            sample_index: サンプルインデックス
-            *args, **kwargs: llm_funcに渡す引数
-        
+            llm_func: The actual LLM call function.
+            test_instance: The test instance.
+            method: Experiment method name.
+            call_role: Role of this call.
+            sample_index: Sample index.
+            *args, **kwargs: Arguments passed to llm_func.
+
         Returns:
-            LLM呼び出しの結果
+            The result of the LLM call.
         """
         last_exception = None
         
@@ -224,7 +224,6 @@ class APIWrapper:
 
 
 def example_usage():
-    """API wrapperの使用例"""
     from finegrained_conf.io.run_metadata import ExperimentRecorder, TestInstance
     from finegrained_conf.llm.openai_client import get_model_response
     

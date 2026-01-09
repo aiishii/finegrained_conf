@@ -4,7 +4,6 @@
 """
 Language model confidence calibration experiment script
 
-Runs reproduction experiments for the "Just Ask for Calibration" paper.
 """
 
 import argparse
@@ -34,9 +33,8 @@ from finegrained_conf.io.run_metadata import (
     build_run_id,
 )
 
-AVAILABLE_MODELS = ["gpt-4.1-mini-2025-04-14", "gpt-4o-mini-2024-07-18", "gpt-4o-2024-11-20", "gpt-4.1-2025-04-14", "Llama-4-Maverick-17B-128E-Instruct-FP8", "Llama-3.3-70B-Instruct", "Phi-4", "gpt-4.1-nano-2025-04-14"]
+AVAILABLE_MODELS = ["gpt-4.1-mini-2025-04-14", "gpt-4o-mini-2024-07-18", "gpt-4o-2024-11-20", "gpt-4.1-2025-04-14", "Llama-4-Maverick-17B-128E-Instruct-FP8", "Llama-3.3-70B-Instruct", "Phi-4", "gpt-4.1-nano-2025-04-14", "DeepSeek-R1-0528"]
 AVAILABLE_DATASETS = ["trivia_qa", "sci_q", "truthful_qa", "jemhop_qa", "hotpot_qa", "2wiki_qa"]
-
 AVAILABLE_METHODS = [
     "label_prob",
     "label_prob_cot",
@@ -57,6 +55,13 @@ AVAILABLE_METHODS = [
     "ling_2s_human",
     "ling_1s_human7",
     "ling_2s_human7"
+    "budgeted_2step_baseline",
+    "budgeted_2step_100",
+    "budgeted_2step_200",
+    "budgeted_2step_500",
+    "budgeted_2step_750",
+    "budgeted_2step_1000",
+    "budgeted_1step_baseline",
 ]
 
 def parse_args():
@@ -167,12 +172,6 @@ def parse_args():
     )
 
     parser.add_argument(
-        "--plot",
-        action="store_true",
-        help="Display calibration plots",
-    )
-
-    parser.add_argument(
         "--language",
         choices=["en", "ja"],
         default="en",
@@ -192,17 +191,6 @@ def parse_args():
         help="Load intermediate result file",
     )
 
-    parser.add_argument(
-        "--eval",
-        action="store_true",
-        help="Re-run evaluation even if intermediate result file exists",
-    )
-
-    parser.add_argument(
-        "--input_pred",
-        action="store_true",
-        help="Input prediction results into prompt",
-    )
     parser.add_argument(
         "--evaluation_model",
         type=str,
@@ -327,34 +315,19 @@ def main():
             )
         )
 
-    if args.input_pred:
-        results = run_experiment_input(
-            model_name=args.model,
-            dataset_name=args.dataset,
-            split=args.dataset_split,
-            methods=args.methods,
-            num_samples=args.num_samples,
-            language=args.language,
-            test_suffix=args.test_suffix,
-            overwrite=overwrite,
-            debug=True,
-            recorder=recorder,
-            test_instances=test_instances,
-        )
-    else:
-        results = run_experiment(
-            model_name=args.model,
-            dataset_name=args.dataset,
-            split=args.dataset_split,
-            methods=args.methods,
-            num_samples=args.num_samples,
-            language=args.language,
-            test_suffix=args.test_suffix,
-            overwrite=overwrite,
-            debug=True,
-            recorder=recorder,
-            test_instances=test_instances,
-        )
+    results = run_experiment(
+        model_name=args.model,
+        dataset_name=args.dataset,
+        split=args.dataset_split,
+        methods=args.methods,
+        num_samples=args.num_samples,
+        language=args.language,
+        test_suffix=args.test_suffix,
+        overwrite=overwrite,
+        debug=True,
+        recorder=recorder,
+        test_instances=test_instances,
+    )
 
     # Organize and display results
     summary = {}
@@ -393,14 +366,6 @@ def main():
     recorder.write_summary(summary, timestamp)
     recorder.touch_empty_evidence()
     recorder.touch_empty_responses()
-
-    if args.plot:
-        for method, result in results.items():
-            plot_calibration(
-                result["confidences"],
-                result["correctness"],
-                title=f"{args.model} - {args.dataset} - {method}"
-            )
     
 
 if __name__ == "__main__":

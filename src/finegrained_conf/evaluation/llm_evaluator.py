@@ -194,7 +194,7 @@ evaluate_triples_schema_jp = {
     }
 }
 
-def check_triples_correctness(pred_triples, gold_triples, question, model="gpt-4o-2024-11-20", evaluation_prompt_template=TRIPLE_EVALUATION_PROMPT_JP, language="ja", debug=False):
+def check_triples_correctness(pred_triples, gold_triples, question, model="gpt-4o-2024-11-20", language="ja", debug=False):
 
     if debug:
         print(f"check_triples_correctness: question={question}, gold_triples={gold_triples}, pred_triples={pred_triples}, model={model}")

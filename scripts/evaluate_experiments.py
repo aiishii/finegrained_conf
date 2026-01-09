@@ -183,7 +183,6 @@ def compute_spurious_metrics_for_method(answer_records, evidence_records):
     print(f"      [compute_spurious] ans_corr_by_qid: {len(ans_corr_by_qid)} questions")
     print(f"      [compute_spurious] triple_conf_by_qid: {len(triple_conf_by_qid)} questions")
 
-    # answer と evidence の両方がそろっている question_id だけ使う
     for qid, ans_corr in ans_corr_by_qid.items():
         if qid not in triple_conf_by_qid:
             continue
